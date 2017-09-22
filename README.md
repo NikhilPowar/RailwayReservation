@@ -11,3 +11,4 @@ Users:-
 
 2.Admin:
 --Edits train details
+--Remove User Account
