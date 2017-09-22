@@ -4,7 +4,7 @@ var express = require("express");
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var loginController = require('./controllers/login-controller');
-var registerController = require('./controllers/sign-controller');
+var registerController = require('./controllers/signup-controller');
 
 var app = express();
 

@@ -2,13 +2,6 @@
 
 A website for reservation of train tickets
 
-Users:-
-1.Customer:
---Creates account
---Books tickets
---Cancels tickets
---Views history
+Allows customers to search trains, book tickets, cancel tickets, etc.
 
-2.Admin:
---Edits train details
---Remove User Account
+Admins can  edit train details
