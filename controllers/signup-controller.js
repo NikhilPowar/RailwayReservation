@@ -11,16 +11,9 @@ exports.register=function(req,res){
     }
     connection.query("INSERT INTO users SET ?",user, function (error, result) {
       if (error) {
-        res.json({
-            status:false,
-            message:'Insertion failed'
-        });
+        return res.redirect('/signup');
       }else{
-        res.json({
-            status:true,
-            data:result,
-            message:'Insertion Successful'
-        });
+        return res.redirect('/homepage');
       }
       console.log(result);
     });

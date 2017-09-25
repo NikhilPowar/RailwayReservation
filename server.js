@@ -5,17 +5,13 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var loginController = require('./controllers/login-controller');
 var registerController = require('./controllers/signup-controller');
-
+var routes = require('./app/routes.js');
 var app = express();
 
+app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.post('/api/signup', function(req, res){
-  registerController.register(req, res)
-});
-app.post('/api/login', function(req, res){
-  loginController.login(req, res)
-});
+routes.route(app);
 
 app.listen(8080);
