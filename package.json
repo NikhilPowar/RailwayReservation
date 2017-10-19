@@ -12,7 +12,11 @@
     "body-parser": "^1.18.1",
     "express": "^4.15.4",
     "mysql": "^2.14.1",
+<<<<<<< HEAD
     "express-session": "^1.15.5",
     "ejs" : "^2.5.7"
+=======
+    "express-session": "^1.15.5"
+>>>>>>> a823caf8a92511cb81d455c9e8073ec563bf1237
   }
 }
