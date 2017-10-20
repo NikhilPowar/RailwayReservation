@@ -1,0 +1,22 @@
+<!-- Page for searching trains -->
+<html>
+  <body>
+    <form action="/search-controller" method="post" enctype="application/x-www-form-urlencoded">
+      <fieldset>
+         <label for="from">From City:</label>
+         <input type="text" id="fullname" name="fullname" placeholder="From" />
+         <br>
+         <label for="to">To City:</label>
+         <input type="email" id="email" name="email" placeholder="To" />
+         <br>
+         <label for="class">Class:</label>
+         <input type="text" id="class" name="class" placeholder=""></input>
+         <br>
+         <label for="seats">No. of seats:</label>
+         <input type="text" id="seats" name="seats" placeholder="1"></input>
+         <br>
+         <input type="submit" value="Search trains"/>
+      </fieldset>
+    </form>
+  </body>
+</html>
