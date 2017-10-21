@@ -5,7 +5,8 @@ var connection = require('./../config');
 exports.login=function(req,res){
     var email=req.body.email;
     var password=req.body.password;
-    connection.query('SELECT password FROM users WHERE email = ?', [email], function (error, results) {
+    var role=req.body.role;
+    connection.query('SELECT password FROM users WHERE email = ? and role = ?', [email, role], function (error, results) {
       if (error) {
           return res.redirect('/login');
       }else{

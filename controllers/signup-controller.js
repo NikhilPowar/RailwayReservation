@@ -7,7 +7,8 @@ exports.register=function(req,res){
         "fullname":req.body.fullname,
         "email":req.body.email,
         "password":req.body.password,
-        "salt":"salt"
+        "salt":"salt",
+        "role":"customer"
     }
     connection.query("INSERT INTO users SET ?",user, function (error, result) {
       if (error) {
