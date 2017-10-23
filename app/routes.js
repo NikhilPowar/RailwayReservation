@@ -18,8 +18,8 @@ exports.route =  function(app){
     res.render('homepage.ejs');
   });
 
-  app.get('/search-trains', function(req, res){
-    res.render('search-trains.ejs');
+  app.get('/train-search', function(req, res){
+    res.render('train-search.ejs');
   });
 
   app.get('/view-history', function(req, res){
@@ -35,6 +35,6 @@ exports.route =  function(app){
   });
 
   app.post('/search-controller', function(req, res){
-      require('./../controllers/search-controller').login(req, res);
+      require('./../controllers/search-controller').search(req, res);
   });
 }

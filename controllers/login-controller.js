@@ -22,6 +22,5 @@ exports.login=function(req,res){
           return res.redirect('/login');
         }
       }
-      console.log(results);
     });
 }

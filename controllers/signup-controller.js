@@ -16,6 +16,5 @@ exports.register=function(req,res){
       }else{
         return res.redirect('/homepage');
       }
-      console.log(result);
     });
 }

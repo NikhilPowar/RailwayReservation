@@ -22,5 +22,36 @@
          <input type="submit" value="Search Trains"/>
       </fieldset>
     </form>
+    <br><br>
+    Selected class: <%= class_type %><br>
+    No. of seats  : <%= num_of_seats %><br>
+    From : <%= from_city %><br>
+    To : <%= to_city %>
+    <table id="results" border=1>
+      <thead>
+        <tr>
+          <th>Train No.</th>
+          <th>Train Name</th>
+          <th>Departure</th>
+          <th>Reach At</th>
+          <th>Fare per seat</th>
+          <th>Total Fare</th>
+          <th>Book now</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% trains.forEach(function (train) { %>
+          <tr>
+            <td><%= train.num %></td>
+            <td><%= train.name %></td>
+            <td><%= train.from_time %></td>
+            <td><%= train.to_time %></td>
+            <td><%= train.fare_per_person %></td>
+            <td><%= train.total_fare %></td>
+            <td><button type="submit">Book now</td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
   </body>
 </html>
