@@ -1,0 +1,29 @@
+<!-- This page shows summary of tickets to be booked -->
+<html>
+  <body>
+    <h2>Ticket Summary:</h2>
+    <br><br>
+    Train name: <%= session.train.selected.name %><br>
+    Train no. : <%= session.train.selected.num %><br>
+    From: <%= session.data.from_city %><br>
+    To: <%= session.data.to_city %><br>
+    Class: <%= session.data.class_type %><br>
+    Seats: <%= session.data.num_of_seats %><br>
+    Fare per seat: <%= session.train.selected.fare_per_person %><br>
+    Total fare: <%= session.train.selected.total_fare %><br>
+
+    <script type="text/javascript">
+      function reply_click(){
+        var form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', '/payment');
+        form.setAttribute('enctype', 'application/x-www-form-urlencoded');
+        form.style.display = 'hidden';
+        document.body.appendChild(form);
+        form.submit();
+      }
+    </script>
+
+    <button id="pay" onclick="reply_click()">Pay now</button>
+  </body>
+</html>

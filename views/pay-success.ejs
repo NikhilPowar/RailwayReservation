@@ -1,0 +1,17 @@
+<!-- This page will display message of a successful payment -->
+<html>
+  <body>
+    Congratulations! Your booking is now confirmed.<br>
+    Present a printed copy of this acknowledgement to receive your ticket while boarding.<br>
+    <br>
+    Train name: <%= session.train.selected.name %><br>
+    Train no. : <%= session.train.selected.num %><br>
+    From: <%= session.data.from_city %><br>
+    To: <%= session.data.to_city %><br>
+    Date <%= session.data.from_date %><br>
+    Class: <%= session.data.class_type %><br>
+    Seats: <%= session.data.num_of_seats %><br>
+    Fare per seat: <%= session.train.selected.fare_per_person %><br>
+    Total fare: <%= session.train.selected.total_fare %><br>
+  </body>
+</html>

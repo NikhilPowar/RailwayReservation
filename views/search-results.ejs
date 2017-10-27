@@ -1,13 +1,32 @@
 <!-- Page for searching trains -->
 <html>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" media="all" />
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js" type="text/javascript"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"></script>
   <body>
+    <script>
+    $( function() {
+      var dateFormat = "mm/dd/yy",
+        date = $( "#date" ).datepicker({
+            minDate: 1,
+            maxDate: 7,
+            changeMonth: true,
+            changeYear: true,
+            numberOfMonths: 1
+          })
+          .datepicker("setDate", new Date());
+        });
+    </script>
     <form action="/search-controller" method="post" enctype="application/x-www-form-urlencoded">
       <fieldset>
          <label for="from">From City:</label>
-         <input type="text" id="from" name="from" placeholder="From" />
+         <input type="text" id="from" name="from" value=<%= session.data.from_city %> required/>
          <br>
          <label for="to">To City:</label>
-         <input type="text" id="to" name="to" placeholder="To" />
+         <input type="text" id="to" name="to" value=<%= session.data.to_city %> required/>
+         <br>
+         <label for="date">Date:</label>
+         <input type="text" id="date" name="date" value=<%= session.data.from_date %> required/>
          <br>
          <label for="classtype">Class:</label>
          <select id="classtype" name="classtype">
@@ -17,16 +36,39 @@
            <option>Sleeper</option>
          </select>
          <label for="seats">No. of seats:</label>
-         <input type="text" id="seats" name="seats" placeholder="1" />
+         <input type="number" id="seats" name="seats" value=<%= session.data.num_of_seats %> min="1" step="1" required/>
          <br>
          <input type="submit" value="Search Trains"/>
       </fieldset>
     </form>
+
+    <script type="text/javascript">
+      function reply_click(clicked_id){
+        var form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', '/book-tickets');
+        form.setAttribute('enctype', 'application/x-www-form-urlencoded');
+        form.setAttribute('style.display', 'hidden');
+        var input = document.createElement('input');
+        input.setAttribute('name', "train_num");
+        input.setAttribute('id', "train_num");
+        input.setAttribute('value', clicked_id);
+        input.setAttribute('type', 'hidden');
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+      }
+    </script>
+
     <br><br>
-    Selected class: <%= class_type %><br>
-    No. of seats  : <%= num_of_seats %><br>
-    From : <%= from_city %><br>
-    To : <%= to_city %>
+    Selected class: <%= session.data.class_type %><br>
+    No. of seats  : <%= session.data.num_of_seats %><br>
+    From : <%= session.data.from_city %><br>
+    To : <%= session.data.to_city %><br>
+
+    <% if(session.search_error!=null){ %>
+      <%= session.search_error.error %>
+    <% } else{ %>
     <table id="results" border=1>
       <thead>
         <tr>
@@ -40,7 +82,7 @@
         </tr>
       </thead>
       <tbody>
-        <% trains.forEach(function (train) { %>
+        <% session.data.trains.forEach(function (train) { %>
           <tr>
             <td><%= train.num %></td>
             <td><%= train.name %></td>
@@ -48,10 +90,11 @@
             <td><%= train.to_time %></td>
             <td><%= train.fare_per_person %></td>
             <td><%= train.total_fare %></td>
-            <td><button type="submit">Book now</td>
+            <td><button onclick="reply_click(this.id)" id=<%= train.num %> >Book now</td>
           </tr>
         <% }) %>
       </tbody>
     </table>
+    <% } %>
   </body>
 </html>

@@ -1,0 +1,50 @@
+<!-- Page for online payment with card details-->
+<html>
+  <body>
+    <h3>Enter card details</h3>
+    <br><br>
+    <label for="total_fare">Total Fare:</label>
+    <input type="text" id="total_fare" name="total_fare" value=<%= session.train.selected.total_fare %> disabled />
+    <form action="/payment-controller" method="post" enctype="application/x-www-form-urlencoded">
+      <fieldset>
+        <script type="text/javascript">
+          function isNumberKey(evt){
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+          }
+        </script>
+
+        <label for="card_num">Enter 16-digit card no.:</label>
+        <%if (session.pay_error!=null){ %>
+        <%if (session.pay_error.num.length > 0) { %>
+         <%= session.pay_error.num %>
+        <% } %>
+        <% } %>
+        <br>
+        <input type="text" id="card_num" name="card_num" placeholder="Enter card no." onkeypress="return isNumberKey(event)" required />
+        <br>
+        <label for="card_name">Enter name on card:</label>
+        <%if (session.pay_error!=null){ %>
+        <%if (session.pay_error.name.length > 0) { %>
+         <%= session.pay_error.name %>
+        <% } %>
+        <% } %>
+        <br>
+        <input type="text" id="card_name" name="card_name" placeholder="Enter name" required />
+        <br>
+        <label for="cvv">Enter 3-digit CVV code:</label>
+        <%if (session.pay_error!=null){ %>
+        <%if (session.pay_error.cvv.length > 0) { %>
+         <%= session.pay_error.cvv %>
+        <% } %>
+        <% } %>
+        <br>
+        <input type="text" id="cvv" name="cvv" placeholder="CVV" required onkeypress="return isNumberKey(event)" />
+        <br>
+        <input type="submit" value="Pay"/>
+      </fieldset>
+    </form>
+  </body>
+</html>

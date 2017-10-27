@@ -1,6 +1,8 @@
 // controller for signing up on the website
 
 var connection = require('./../config');
+var express = require("express");
+var app = express();
 
 exports.register=function(req,res){
     var user={
@@ -14,6 +16,8 @@ exports.register=function(req,res){
       if (error) {
         return res.redirect('/signup');
       }else{
+        req.session.user = {email: user.email, role: user.role};
+        req.session.save();
         return res.redirect('/homepage');
       }
     });

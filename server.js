@@ -8,6 +8,7 @@ var registerController = require('./controllers/signup-controller');
 var routes = require('./app/routes.js');
 var app = express();
 
+app.use(session({ secret: 'secret-token'}));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
