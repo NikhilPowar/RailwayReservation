@@ -16,7 +16,7 @@ exports.register=function(req,res){
       if (error) {
         return res.redirect('/signup');
       }else{
-        req.session.user = {email: user.email, role: user.role};
+        req.session.user = {name: user.fullname, email: user.email, role: user.role};
         req.session.save();
         return res.redirect('/homepage');
       }

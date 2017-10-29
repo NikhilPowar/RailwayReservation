@@ -8,13 +8,13 @@ exports.login=function(req,res){
     var u_email=req.body.email;
     var u_password=req.body.password;
     var u_role=req.body.role;
-    connection.query('SELECT password FROM users WHERE email = ? and role = ?', [u_email, u_role], function (error, results) {
+    connection.query('SELECT fullname, password FROM users WHERE email = ? and role = ?', [u_email, u_role], function (error, results) {
       if (error) {
           return res.redirect('/login');
       }else{
         if(results.length>0){
             if(u_password==results[0].password){
-                req.session.user = {email: u_email, role: u_role};
+                req.session.user = {name: results[0].fullname, email: u_email, role: u_role};
                 req.session.save();
                 return res.redirect('/homepage');
             }

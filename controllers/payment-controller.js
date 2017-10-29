@@ -56,7 +56,7 @@ exports.authenticate=function(req,res){
         else{
           seat_type="sleeper_seats";
         }
-        connection.query("UPDATE seat_status SET "+seat_type+" = "+seat_type+" - ? WHERE train_num=? AND DATEDIFF(date, ?)=0", [parseInt(req.session.data.num_of_seats), req.session.train.selected.num, req.session.data.from_date])
+        connection.query("UPDATE seat_status SET "+seat_type+" = "+seat_type+" - ? WHERE train_num=? AND DATEDIFF(date, ?)=0", [parseInt(req.session.data.num_of_seats), req.session.train.selected.num, req.session.data.from_date]);
         res.redirect('/pay-success');
       }
     });

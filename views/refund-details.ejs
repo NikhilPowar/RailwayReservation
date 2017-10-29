@@ -1,0 +1,58 @@
+<!-- Page for entering bank details for refund-->
+<html>
+  <body>
+    <h3>Enter bank details for refund</h3>
+    <br><br>
+    <bold>Please ensure correctness of details.<br>
+      Incorrect details will lead to non-payment of refund</body>
+    <br>
+    Refund Amount: <%= session.ticket.selected.total_fare/2 %>
+    <form action="/cancel-controller" method="post" enctype="application/x-www-form-urlencoded">
+      <fieldset>
+        <script type="text/javascript">
+          function isNumberKey(evt){
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+          }
+          function isAlphaNumberKey(evt){
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57) && (charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122))
+                return false;
+            return true;
+          }
+        </script>
+
+        <label for="acc_num">Enter Account no.:</label>
+        <%if (session.refund_error!=null){ %>
+        <%if (session.refund_error.num.length > 0) { %>
+         <%= session.refund_error.num %>
+        <% } %>
+        <% } %>
+        <br>
+        <input type="text" id="acc_num" name="acc_num" placeholder="Enter acc. no." onkeypress="return isNumberKey(event)" required />
+        <br>
+        <label for="card_name">Enter name of account holder:</label>
+        <%if (session.refund_error!=null){ %>
+        <%if (session.refund_error.name.length > 0) { %>
+         <%= session.refund_error.name %>
+        <% } %>
+        <% } %>
+        <br>
+        <input type="text" id="acc_name" name="acc_name" placeholder="Enter acc. holder's name" required />
+        <br>
+        <label for="cvv">Enter bank's IFSC:</label>
+        <%if (session.refund_error!=null){ %>
+        <%if (session.refund_error.ifsc.length > 0) { %>
+         <%= session.refund_error.ifsc %>
+        <% } %>
+        <% } %>
+        <br>
+        <input type="text" id="ifsc" name="ifsc" placeholder="ifsc" required onkeypress="return isAlphaNumberKey(event)" />
+        <br>
+        <input type="submit" value="Pay"/>
+      </fieldset>
+    </form>
+  </body>
+</html>

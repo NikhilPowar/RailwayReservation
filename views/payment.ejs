@@ -3,8 +3,7 @@
   <body>
     <h3>Enter card details</h3>
     <br><br>
-    <label for="total_fare">Total Fare:</label>
-    <input type="text" id="total_fare" name="total_fare" value=<%= session.train.selected.total_fare %> disabled />
+    Total Fare: <%= session.train.selected.total_fare %><br>
     <form action="/payment-controller" method="post" enctype="application/x-www-form-urlencoded">
       <fieldset>
         <script type="text/javascript">

@@ -1,0 +1,28 @@
+<!-- This page shows summary of tickets to be booked -->
+<html>
+  <body>
+    <h2>Ticket Summary:</h2>
+    <br><br>
+    Train name: <%= session.ticket.selected.train_name %><br>
+    Train no. : <%= session.ticket.selected.train_num %><br>
+    Date: <%= session.ticket.selected.date %><br>
+    From: <%= session.ticket.selected.from %><br>
+    To: <%= session.ticket.selected.to %><br>
+    Class: <%= session.ticket.selected.classtype %><br>
+    Seats: <%= session.ticket.selected.seats %><br>
+    Total fare: <%= session.ticket.selected.total_fare %>
+    <br><br>
+    <bold>Note:Only 50% of total fare will be refunded</bold>
+    <br><br>
+    Press the button below to continue to filling the refund details.
+    <br>
+
+    <script type="text/javascript">
+      function reply_click(){
+        location.href = "/refund-details";
+      }
+    </script>
+
+    <button id="pay" onclick="reply_click()">Cancel</button>
+  </body>
+</html>

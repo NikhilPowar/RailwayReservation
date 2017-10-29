@@ -1,6 +1,70 @@
 <!-- Page for viewing booking history -->
 <html>
   <body>
-    
+
+    <script type="text/javascript">
+      function reply_click(clicked_id){
+        var form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', '/cancel-ticket');
+        form.setAttribute('enctype', 'application/x-www-form-urlencoded');
+        form.setAttribute('style.display', 'hidden');
+        var input = document.createElement('input');
+        input.setAttribute('name', "ticket_id");
+        input.setAttribute('id', "ticket_id");
+        input.setAttribute('value', clicked_id);
+        input.setAttribute('type', 'hidden');
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+      }
+    </script>
+
+    User Full Name: <%= session.user.name %><br>
+    Booking History: <br>
+    <% if(session.history.error!=null){ %>
+      <% session.history.error %>
+    <% } else{ %>
+      <table id="results" border=1>
+        <thead>
+          <tr>
+            <th>Train No.</th>
+            <th>Train Name</th>
+            <th>From</th>
+            <th>To</th>
+            <th>On date</th>
+            <th>Departure</th>
+            <th>Reach At</th>
+            <th>Class</th>
+            <th>Seats</th>
+            <th>Total Fare</th>
+            <th>Booking time</th>
+            <th>Cancel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% session.history.bookings.forEach(function (train) { %>
+            <tr>
+              <td><%= train.train_num %></td>
+              <td><%= train.train_name %></td>
+              <td><%= train.from %></td>
+              <td><%= train.to %></td>
+              <td><%= train.date %></td>
+              <td><%= train.from_time %></td>
+              <td><%= train.to_time %></td>
+              <td><%= train.classtype %></td>
+              <td><%= train.seats %></td>
+              <td><%= train.total_fare %></td>
+              <td><%= train.booked %></td>
+              <% if(train.cancellation_valid>=1){ %>
+              <td><button onclick="reply_click(this.id)" id=<%= train.id %> >Cancel</td>
+              <% } else{ %>
+              <td>------</td>
+              <% } %>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
   </body>
 </html>

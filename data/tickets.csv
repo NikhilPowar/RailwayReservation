@@ -1,0 +1,4 @@
+train_num;user_email;time;date;class;seats;from;to;total_fare;from_time;to_time
+11301;troll@troll.com;2017-10-23 15:23:56;2017-10-24;Non-AC 3-tier;3;Mumbai;Pune;402;8:05AM;11:45AM
+11301;troll@troll.com;2017-10-23 17:23:56;2017-10-24;Non-AC 3-tier;3;Mumbai;Pune;402;8:05AM;11:45AM
+11301;troll@troll.com;2017-10-27 16:37:44;2017-10-29;Non-AC 3-tier;3;Mumbai;Pune;402;8:05AM;11:45AM

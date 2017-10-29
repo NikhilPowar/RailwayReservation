@@ -31,7 +31,8 @@ exports.route =  function(app){
   app.get('/train-search', function(req, res){
     if(req.session.user==null)
       res.render('unauthorized.ejs');
-    else res.render('train-search.ejs');
+    else
+    res.render('train-search.ejs');
   });
 
   app.get('/search-results', function(req, res){
@@ -79,11 +80,49 @@ exports.route =  function(app){
       res.render('pay-success.ejs', {session: req.session});
   });
 
+  app.get('/history-controller', function(req, res){
+    if(req.session.user==null)
+      res.render('unauthorized.ejs');
+    else
+      require('./../controllers/history-controller').history(req, res);
+  });
+
   app.get('/view-history', function(req, res){
     if(req.session.user==null)
       res.render('unauthorized.ejs');
     else
-      res.render('view-history.ejs');
+      res.render('view-history.ejs', {session: req.session});
+  });
+
+  app.post('/cancel-ticket', function(req, res){
+    if(req.session.user==null)
+      res.render('unauthorized.ejs');
+    else{
+      var index=0;
+      for(var x=0; x<req.session.history.bookings.length; x++){
+        if(req.session.history.bookings.id==req.body.ticket_id){
+          index=x;
+          break;
+        }
+      }
+      req.session.ticket={selected: req.session.history.bookings[index]};
+      req.session.save();
+      res.render('cancel-ticket.ejs', {session: req.session});
+    }
+  });
+
+  app.get('/refund-details', function(req, res){
+    if(req.session.user==null)
+      res.render('unauthorized.ejs');
+    else
+      res.render('refund-details.ejs', {session: req.session});
+  });
+
+  app.get('/cancel-success', function(req, res){
+    if(req.session.user==null)
+      res.render('unauthorized.ejs');
+    else
+      res.render('cancel-success.ejs', {session: req.session});
   });
 
   app.post('/login-controller', function(req, res){
@@ -101,4 +140,9 @@ exports.route =  function(app){
   app.post('/payment-controller', function(req, res){
       require('./../controllers/payment-controller').authenticate(req, res);
   });
+
+  app.post('/cancel-controller', function(req, res){
+      require('./../controllers/cancel-controller').cancel(req, res);
+  });
+
 }
