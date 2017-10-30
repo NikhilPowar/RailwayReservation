@@ -12,6 +12,7 @@ app.use(session({ secret: 'secret-token'}));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static('views/'));
 
 routes.route(app);
 

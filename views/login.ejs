@@ -1,22 +1,49 @@
 <!-- This is the page rendered for login -->
 <html>
-   <body>
+  <head>
+  <link rel="stylesheet" type="text/css" href="/form.css">
+  <title>Login</title>
+  </head>
+  <body>
+    <form-header>
+      <h2>Login</h2>
+      <p align="center"><span class="error">* required field.</span></p>
+    </form-header>
+    <form-text>
       <form action="/login-controller" method="post" enctype="application/x-www-form-urlencoded">
-         <fieldset>
-            <label for="email">Email:</label>
+        <div class="container">
+          <fieldset>
+            <label for="email"><b>Email:</b></label>
+            <span class="error">*
+            <%if (session.login_error!=null){ %>
+            <%if (session.login_error.email.length > 0) { %>
+             <%= session.login_error.email %>
+            <% } %>
+            <% } %>
+            </span>
             <input type="email" id="email" name="email" placeholder="Enter your email address" />
             <br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter password"></input>
+            <label for="password"><b>Password:</b></label>
+            <span class="error">*
+            <%if (session.login_error!=null){ %>
+            <%if (session.login_error.password.length > 0) { %>
+             <%= session.login_error.password %>
+            <% } %>
+            <% } %>
+            </span>
+            <input type="password" id="password" name="password" placeholder="Enter password" />
             <br>
-            <label for="role">Login as:</label>
+            <label for="role"><b>Login as:</b></label>
+            <span class="error">*</span>
             <select id="role" name="role">
-              <option>Customer</option>
-              <option>Admin</option>
+            <option>Customer</option>
+            <option>Admin</option>
             </select>
             <br>
-            <input type="submit" value="Log in"/>
-         </fieldset>
-      </form>
-   </body>
+            <button type="submit">Log in</button>
+          </fieldset>
+        </div>
+      </form-text>
+    </form>
+  </body>
 </html>

@@ -1,22 +1,56 @@
 <!-- This is the page rendered for signup -->
 <html>
-   <body>
+  <head>
+  <link rel="stylesheet" type="text/css" href="/form.css">
+  <title>Sign-Up</title>
+  </head>
+  <body>
+    <form-header>
+      <h2>Sign-Up</h2>
+      <p align="center"><span class="error">* required field.</span></p>
+    </form-header>
+    <form-text>
       <form action="/signup-controller" method="post" enctype="application/x-www-form-urlencoded">
-         <fieldset>
-            <label for="fullname">Full Name:</label>
+        <div class="container">
+          <fieldset>
+            <label for="fullname"><b>Full Name:</b></label>
+            <span class="error">*
+              <%if (session.signup_error!=null){ %>
+              <%if (session.signup_error.name.length > 0) { %>
+               <%= session.signup_error.name %>
+              <% } %>
+              <% } %>
+            </span>
             <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" />
             <br>
-            <label for="email">Email:</label>
+            <label for="email"><b>Email:</b></label>
+            <span class="error">*</span>
             <input type="email" id="email" name="email" placeholder="Enter your email address" />
             <br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter password"></input>
+            <label for="password"><b>Password:</b></label>
+            <span class="error">*
+              <%if (session.signup_error!=null){ %>
+              <%if (session.signup_error.password.length > 0) { %>
+               <%= session.signup_error.password %>
+              <% } %>
+              <% } %>
+            </span>
+            <input type="password" id="password" name="password" placeholder="Enter password" />
             <br>
-            <label for="confirm">Confirm Password:</label>
-            <input type="password" id="confirm" name="confirm" placeholder="Confirm password"></input>
+            <label for="confirm"><b>Confirm Password:</b></label>
+            <span class="error">*
+              <%if (session.signup_error!=null){ %>
+              <%if (session.signup_error.con_password.length > 0) { %>
+               <%= session.signup_error.con_password %>
+              <% } %>
+              <% } %>
+            </span>
+            <input type="password" id="confirm" name="confirm" placeholder="Confirm password" />
             <br>
-            <input type="submit" value="Create Account"/>
-         </fieldset>
+            <button type="submit"/>Create Account</button>
+          </fieldset>
+        </div>
       </form>
-   </body>
+    </form-text>
+  </body>
 </html>

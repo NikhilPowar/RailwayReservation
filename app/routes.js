@@ -14,25 +14,25 @@ exports.route =  function(app){
   });
 
   app.get('/login', function(req, res){
-    res.render('login.ejs');
+    res.render('login.ejs', {session: req.session});
   });
 
   app.get('/register', function(req, res){
-    res.render('signup.ejs');
+    res.render('signup.ejs', {session: req.session});
   });
 
   app.get('/homepage', function(req, res){
     if(req.session.user==null)
       res.render('unauthorized.ejs');
     else
-      res.render('homepage.ejs');
+      res.render('homepage.ejs', {session: req.session});
   });
 
   app.get('/train-search', function(req, res){
     if(req.session.user==null)
       res.render('unauthorized.ejs');
     else
-    res.render('train-search.ejs');
+    res.render('train-search.ejs', {session: req.session});
   });
 
   app.get('/search-results', function(req, res){
