@@ -1,9 +1,9 @@
 CREATE OR REPLACE
-    ALGORITHM = UNDEFINED 
-    DEFINER = `root`@`localhost` 
+    ALGORITHM = UNDEFINED
+    DEFINER = `root`@`localhost`
     SQL SECURITY DEFINER
 VIEW `history` AS
-    SELECT 
+    SELECT
         `a`.`email` AS `email`,
         `a`.`train_num` AS `train_num`,
         `railres`.`trains`.`train_name` AS `train_name`,
@@ -15,9 +15,9 @@ VIEW `history` AS
         `a`.`seats` AS `seats`,
         `a`.`total_fare` AS `total_fare`,
         `a`.`time` AS `time`,
-        `a`.`date` As `date`
+        `a`.`date` AS `date`
     FROM
-        (((SELECT 
+        (((SELECT
             `railres`.`tickets`.`train_num` AS `train_num`,
                 `railres`.`tickets`.`user_email` AS `user_email`,
                 `railres`.`tickets`.`time` AS `time`,
@@ -32,9 +32,8 @@ VIEW `history` AS
                 `railres`.`users`.`fullname` AS `fullname`,
                 `railres`.`users`.`email` AS `email`,
                 `railres`.`users`.`password` AS `password`,
-                `railres`.`users`.`salt` AS `salt`,
                 `railres`.`users`.`role` AS `role`
         FROM
             (`railres`.`tickets`
-        JOIN `railres`.`users` ON `railres`.`tickets`.`user_email` = `railres`.`users`.`email`))) `a`
+        JOIN `railres`.`users` ON ((`railres`.`tickets`.`user_email` = `railres`.`users`.`email`))))) `a`
         JOIN `railres`.`trains` ON ((`a`.`train_num` = `railres`.`trains`.`train_num`)))

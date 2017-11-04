@@ -1,7 +1,6 @@
 <!-- This is the page rendered for login -->
 <html>
   <head>
-  <link rel="stylesheet" type="text/css" href="/form.css">
   <title>Login</title>
   </head>
   <body>
@@ -11,7 +10,7 @@
     </form-header>
     <form-text>
       <form action="/login-controller" method="post" enctype="application/x-www-form-urlencoded">
-        <div class="container">
+        <div class="form-container">
           <fieldset>
             <label for="email"><b>Email:</b></label>
             <span class="error">*
@@ -45,5 +44,7 @@
         </div>
       </form-text>
     </form>
+
+    <link rel="stylesheet" type="text/css" href="/form.css">
   </body>
 </html>

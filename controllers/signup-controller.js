@@ -9,6 +9,7 @@ exports.register=function(req,res){
   var name_err="";
   var password_err="";
   var con_password_err="";
+  var email_err="";
 
   var letters = /^[A-Za-z ]+$/;
   if(!req.body.fullname.match(letters)){
@@ -17,11 +18,11 @@ exports.register=function(req,res){
   if(req.body.password.length<6){
     password_err = "Password must be longer than 5 characters!"
   }
-  if(req.body.password.length!=eq.body.confirm.length){
+  if(req.body.password.length!=req.body.confirm.length){
     password_err = "Passwords don't match!"
   }
 
-  req.session.signup_error={name: name_err, password: password_err, con_password: con_password_err};
+  req.session.signup_error={name: name_err, password: password_err, con_password: con_password_err, email: email_err};
   if(name_err=="" && password_err=="" && con_password_err==""){
     var user={
         "fullname":req.body.fullname,
@@ -31,7 +32,8 @@ exports.register=function(req,res){
     }
     connection.query("INSERT INTO users SET ?",user, function (error, result) {
       if (error) {
-        return res.redirect('/signup');
+        req.session.signup_error.email="Email already registered";
+        return res.redirect('/register');
       }else{
         req.session.user = {name: user.fullname, email: user.email, role: user.role};
         req.session.save();
@@ -40,6 +42,6 @@ exports.register=function(req,res){
     });
   }
   else{
-    return res.redirect('/signup');
+    return res.redirect('/register');
   }
 }

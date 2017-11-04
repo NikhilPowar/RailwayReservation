@@ -15,7 +15,7 @@
     "express-session": "^1.15.5",
     "ejs" : "^2.5.7",
     "moment" : "^2.19.1",
-    "moment-timezone" : "0.5.13",
-    "bcrpyt-nodejs" : "0.0.3"
+    "moment-timezone" : "^0.5.13",
+    "bcrypt-nodejs" : "^0.0.3"
   }
 }

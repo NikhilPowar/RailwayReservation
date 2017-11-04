@@ -1,9 +1,29 @@
 <!-- This page is displayed on successful cancellation of tickets -->
 
 <html>
+  <head>
+    <title>Cancel Success</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Jquery library -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js" type="text/javascript"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="form.css">
+    <link rel="stylesheet" type="text/css" href="pagelayout.css">
+  </head>
   <body>
+    <% include header.ejs %>
+    <% include sidebar.ejs %>
+    <div class='container'>
+    <h4>
     Your tickets were cancelled successfully.<br>
     Refunds will be processed in 3-4 working days<br>
     <a href="/homepage">Click here</a> to return to homepage.
+    </h4>
   </body>
+  </div>
+  <% include footer.ejs %>
 </html>

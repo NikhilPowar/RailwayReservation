@@ -1,4 +1,4 @@
-<!-- This page will display message of a successful payment -->
+<!--About Us page-->
 <html>
   <head>
     <title>About Us</title>
@@ -15,21 +15,19 @@
   <body>
     <% include header.ejs %>
     <% include sidebar.ejs %>
+
     <div class='container'>
-    <h4>
-    Congratulations! Your booking is now confirmed.<br>
-    Present a printed copy of this acknowledgement to receive your ticket while boarding.<br>
-    <br>
-    Train name: <%= session.train.selected.name %><br>
-    Train no. : <%= session.train.selected.num %><br>
-    Date <%= session.data.from_date %><br>
-    From: <%= session.data.from_city %><br>
-    To: <%= session.data.to_city %><br>
-    Class: <%= session.data.class_type %><br>
-    Seats: <%= session.data.num_of_seats %><br>
-    Total fare: <%= session.train.selected.total_fare %><br>
+    <h4><b>ABOUT US:</b><br>
+    This is a railway reservation website.<br>
+    We provide a platform for booking tickets with the Indian Railways.<br>
+    Thank you for using our website.<br><br>
+    <b>PLEASE NOTE:</b><br>
+    All bookings done at our site are genuine.<br>
+    This is not an official Indian Railways website.<br>
+    Further details of trains are available on website of Indian Railways.
     </h4>
     </div>
+
     <% include footer.ejs %>
   </body>
 </html>

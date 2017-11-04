@@ -23,6 +23,24 @@ input[type=text], input[type=password], input[type=email], textarea {
     box-sizing: border-box;
 }
 
+input[type=number]{
+    width: 75px;
+    padding: 4px 6px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+select{
+    width: 150px;
+    padding: 4px 6px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
 button {
     background-color: #4CAFAF;
     color: white;
@@ -49,7 +67,7 @@ img.avatar {
     border-radius: 50%;
 }
 
-.container {
+.form-container {
     margin: auto;
     width: 40%;
     min-width: 400px;

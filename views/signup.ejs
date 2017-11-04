@@ -1,7 +1,6 @@
 <!-- This is the page rendered for signup -->
 <html>
   <head>
-  <link rel="stylesheet" type="text/css" href="/form.css">
   <title>Sign-Up</title>
   </head>
   <body>
@@ -11,7 +10,7 @@
     </form-header>
     <form-text>
       <form action="/signup-controller" method="post" enctype="application/x-www-form-urlencoded">
-        <div class="container">
+        <div class="form-container">
           <fieldset>
             <label for="fullname"><b>Full Name:</b></label>
             <span class="error">*
@@ -24,7 +23,13 @@
             <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" />
             <br>
             <label for="email"><b>Email:</b></label>
-            <span class="error">*</span>
+            <span class="error">*
+              <%if (session.signup_error!=null){ %>
+              <%if (session.signup_error.email.length > 0) { %>
+               <%= session.signup_error.email %>
+              <% } %>
+              <% } %>
+            </span>
             <input type="email" id="email" name="email" placeholder="Enter your email address" />
             <br>
             <label for="password"><b>Password:</b></label>
@@ -52,5 +57,7 @@
         </div>
       </form>
     </form-text>
+
+    <link rel="stylesheet" type="text/css" href="/form.css">
   </body>
 </html>

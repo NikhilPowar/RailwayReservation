@@ -1,7 +1,7 @@
-<!-- This page will display message of a successful payment -->
+<!-- This page shows summary of tickets -->
 <html>
   <head>
-    <title>About Us</title>
+    <title>View Tickets</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Minified CSS -->
@@ -17,17 +17,16 @@
     <% include sidebar.ejs %>
     <div class='container'>
     <h4>
-    Congratulations! Your booking is now confirmed.<br>
-    Present a printed copy of this acknowledgement to receive your ticket while boarding.<br>
-    <br>
-    Train name: <%= session.train.selected.name %><br>
-    Train no. : <%= session.train.selected.num %><br>
-    Date <%= session.data.from_date %><br>
-    From: <%= session.data.from_city %><br>
-    To: <%= session.data.to_city %><br>
-    Class: <%= session.data.class_type %><br>
-    Seats: <%= session.data.num_of_seats %><br>
-    Total fare: <%= session.train.selected.total_fare %><br>
+    Your booking is confirmed.<br>
+    Present a printed copy of this acknowledgement to receive your ticket while boarding.<br><br>
+    Train name: <%= session.ticket.selected.train_name %><br>
+    Train no. : <%= session.ticket.selected.train_num %><br>
+    Date: <%= session.ticket.selected.date %><br>
+    From: <%= session.ticket.selected.from %><br>
+    To: <%= session.ticket.selected.to %><br>
+    Class: <%= session.ticket.selected.classtype %><br>
+    Seats: <%= session.ticket.selected.seats %><br>
+    Total fare: <%= session.ticket.selected.total_fare %>
     </h4>
     </div>
     <% include footer.ejs %>

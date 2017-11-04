@@ -24,7 +24,6 @@ exports.authenticate=function(req,res){
   req.session.pay_error = {name: name_error, num: num_error, cvv: cvv_error};
   req.session.save();
   if(num_error=="" && name_error=="" && cvv_error==""){
-    console.log(req.session.train.selected);
     var ticket = {
       "train_num": req.session.train.selected.num,
       "user_email": req.session.user.email,

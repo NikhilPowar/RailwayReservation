@@ -28,6 +28,13 @@ exports.route =  function(app){
       res.render('homepage.ejs', {session: req.session});
   });
 
+  app.get('/aboutus', function(req, res){
+    if(req.session.user==null)
+      res.render('unauthorized.ejs');
+    else
+      res.render('aboutus.ejs', {session: req.session});
+  });
+
   app.get('/train-search', function(req, res){
     if(req.session.user==null)
       res.render('unauthorized.ejs');
@@ -100,7 +107,7 @@ exports.route =  function(app){
     else{
       var index=0;
       for(var x=0; x<req.session.history.bookings.length; x++){
-        if(req.session.history.bookings.id==req.body.ticket_id){
+        if(req.session.history.bookings[x].id==req.body.ticket_id){
           index=x;
           break;
         }
@@ -108,6 +115,23 @@ exports.route =  function(app){
       req.session.ticket={selected: req.session.history.bookings[index]};
       req.session.save();
       res.render('cancel-ticket.ejs', {session: req.session});
+    }
+  });
+
+  app.post('/view-ticket', function(req, res){
+    if(req.session.user==null)
+      res.render('unauthorized.ejs');
+    else{
+      var index=0;
+      for(var x=0; x<req.session.history.bookings.length; x++){
+        if(req.session.history.bookings[x].id==req.body.ticket_id){
+          index=x;
+          break;
+        }
+      }
+      req.session.ticket={selected: req.session.history.bookings[index]};
+      req.session.save();
+      res.render('view-ticket.ejs', {session: req.session});
     }
   });
 
@@ -123,6 +147,15 @@ exports.route =  function(app){
       res.render('unauthorized.ejs');
     else
       res.render('cancel-success.ejs', {session: req.session});
+  });
+
+  app.get('/logout', function(req, res){
+    if(req.session.user==null)
+      res.render('unauthorized.ejs');
+    else{
+      req.session.destroy();
+      res.render('logout.ejs');
+    }
   });
 
   app.post('/login-controller', function(req, res){

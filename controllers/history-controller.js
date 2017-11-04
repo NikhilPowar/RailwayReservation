@@ -14,12 +14,10 @@ exports.history=function(req,res){
     else{
       if(rows.length>0){
         var current_time = moment().tz("Asia/Kolkata");
-        console.log(current_time);
         var results=[];
         for(var i=0; i<rows.length; i++){
           booked_time = moment(rows[i].time).tz("Asia/Kolkata");
           dep_date = moment(rows[i].date).tz("Asia/Kolkata");
-          console.log(dep_date);
           results.push({
             train_num: rows[i].train_num,
             train_name: rows[i].train_name,
@@ -32,7 +30,7 @@ exports.history=function(req,res){
             seats: rows[i].seats,
             total_fare: rows[i].total_fare,
             booked: booked_time.format("YYYY-MM-DD HH:mm:ss"),
-            id: req.session.user.email+"$"+booked_time.format("YYYY-MM-DD HH:mm:ss"),
+            id: req.session.user.email+"$"+booked_time.format("YYYY-MM-DD_HH:mm:ss"),
             cancellation_valid: dep_date.startOf('day').diff(current_time.startOf('day'), 'days')
           });
         }
