@@ -1,0 +1,50 @@
+<html>
+  <body>
+    <h2>Update train</h2>
+    <form method="post" action = "/load_train_data">
+    <p>Details of train are </p>
+
+    <% if(session.loaded_data.error!=null){ %>
+    <% session.loaded_data.error %>
+    <% } else{ %>
+
+      <% session.loaded_data.ldata.forEach(function (train) { %>
+        <% var route_array = train.route.split(""); %>
+        <% var max_fare_array = train.max_fare.split(""); %>
+
+<form action="/update_train-controller" method="post" enctype="application/x-www-form-urlencoded">
+
+        <label>Train No: </label>
+        <input type="number" id="train_no" name="train_no"  value = <%= train.train_num %>/><br>
+
+        <label>Train Name: </label>
+        <input type="text" id="train_name" name="train_nam" value = <td><%= train.train_name %> ></input><br>
+
+        <label>Type</label> <label>Seats</label> <label>Fare</label><br>
+
+        <label>AC</label> <input type="text" id="ac_seats" value = <%= train.ac %> ></input>
+        <input type="text" id="ac_fare" value = <%= max_fare_array[0] %>></input> <br>
+
+        <label>Nob-AC</label> <input type="text" id="nonac_seats" value = <%= train.non_ac %> ></input>
+        <input type="text" id="nonac_fare" value = <%= max_fare_array[1] %> ></input> <br>
+
+        <label>Sleeper</label> <input type="text" id="sleeper_seats" value = <%= train.sleeper %> ></input>
+        <input type="text" id="sleeper_fare" value = <%= max_fare_array[2] %> > <br>
+
+         <label>General</label> <input type="text" id="general_seats" value = <%= train.general %> ></input>
+         <input type="text" id="general_fare" value = <%= max_fare_array[3] ></input> <br>
+
+         <% route_array.forEach(function(item){ %>
+         <% var cit_dist = item.split(":");  %>
+         <input type = "text" value= <%=cit_dist[0] %> >  </input>
+         <input type = "text" value= <%=cit_dist[1] %> >  </input>
+         <br>
+
+         <%  }); %>
+
+<input type='submit' value="Update">
+
+</form>
+
+  </body>
+</html>
