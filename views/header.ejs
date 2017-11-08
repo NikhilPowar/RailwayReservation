@@ -6,7 +6,11 @@
       	<span class="icon-bar"></span>
     		<span class="icon-bar"></span>
       </button>
+			<% if(session.user.role=="Customer"){ %>
 			<a class="navbar-brand" href="/homepage">RailwayReservation</a>
+			<% } else{ %>
+			<a class="navbar-brand" href="/admin-homepage">RailwayReservation</a>
+			<% } %>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">

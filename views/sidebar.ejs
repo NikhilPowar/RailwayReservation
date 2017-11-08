@@ -3,9 +3,14 @@
 <div id="sidebar-wrapper">
   <nav>
     <ul class="sidebar-nav">
+      <% if(session.user.role=="Customer"){ %>
       <li><a href="/homepage">Home</a></li>
       <li><a href="/history-controller">History</a></li>
       <li><a href="/aboutus">About Us</a></li>
+      <% } else{ %>
+      <li><a href="/add_train">Add Train</a></li>
+      <li><a href="/update_trains">Update Train</a></li>
+      <% } %>
     </ul>
   </nav>
 </div>

@@ -28,6 +28,41 @@ exports.route =  function(app){
       res.render('homepage.ejs', {session: req.session});
   });
 
+  app.get('/admin-homepage', function(req, res){
+    if(req.session.user==null)
+      res.render('unauthorized.ejs');
+    else
+      res.render('admin-homepage.ejs', {session: req.session});
+  });
+
+  app.get('/change-success', function(req, res){
+    if(req.session.user==null)
+      res.render('unauthorized.ejs');
+    else
+      res.render('change-success.ejs', {session: req.session});
+  });
+
+  app.get('/add_train', function(req, res){
+    if(req.session.user==null)
+      res.render('unauthorized.ejs');
+    else
+      res.render('add_train.ejs', {session: req.session});
+  });
+
+  app.get('/to_update', function(req, res){
+    if(req.session.user==null)
+      res.render('unauthorized.ejs');
+    else
+      res.render('to_update.ejs', {session: req.session});
+  });
+
+  app.get('/update_trains', function(req, res){
+    if(req.session.user==null)
+      res.render('unauthorized.ejs');
+    else
+      res.render('update_trains.ejs', {session: req.session});
+  });
+
   app.get('/aboutus', function(req, res){
     if(req.session.user==null)
       res.render('unauthorized.ejs');
@@ -47,6 +82,18 @@ exports.route =  function(app){
       res.render('unauthorized.ejs');
     else
       res.render('search-results.ejs', {session: req.session});
+  });
+
+  app.post('/add_train-controller', function(req, res){
+      require('./../controllers/add_train-controller').add_trains(req, res);
+  });
+
+  app.post('/load_train_data', function(req, res){
+      require('./../controllers/load_train_data').load_train_data(req, res);
+  });
+
+  app.post('/update_train-controller', function(req, res){
+      require('./../controllers/update_train-controller').update_trains(req, res);
   });
 
   app.post('/book-tickets', function(req, res){

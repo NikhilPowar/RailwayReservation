@@ -1,0 +1,65 @@
+<html>
+<head>
+  <title>Add Train</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- Jquery library -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js" type="text/javascript"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" media="all" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="pagelayout.css">
+</head>
+  <body>
+    <% include header.ejs %>
+    <% include sidebar.ejs %>
+    <div class='container'>
+    <h3>Add a new train</h3>
+    <form action="/add_train-controller" method="post" enctype="application/x-www-form-urlencoded">
+    <label>Train No: </label>
+    <input type="text" id="train_no" name="train_no" />
+    <br>
+    <label>Train Name: </label>
+    <input type="text" id="train_name" name="train_nam" ></input>
+    <br>
+
+    <label>Type</label> <label>Seats</label> <label>Fare</label><br>
+    <label>AC</label> <input type="text" id="ac_seats" name="ac_seats"></input> <input type="text" id="ac_fare" name="ac_fare"></input> <br>
+    <label>Non-AC</label> <input type="text" id="nonac_seats" name="nonac_seats"></input> <input type="text" id="nonac_fare" name="nonac_fare"></input> <br>
+    <label>Sleeper</label> <input type="text" id="sleeper_seats" name="sleeper_seats"></input> <input type="text" id="sleeper_fare" name="sleeper_fare"></input> <br>
+    <label>General</label> <input type="text" id="general_seats" name="general_seats"></input> <input type="text" id="general_fare" name="general_fare"></input> <br>
+
+     <button id="add_route" onclick="myFunction()">Add City</button><br>
+      <label>City</label> <label>Distance</label> <label>Time</label><br>
+    <input type='submit' value="Add Train">
+    </form>
+  </div>
+
+
+
+<script>
+var num = 0;
+function myFunction() {
+  var br = document.createElement("br");
+  var x = document.createElement("INPUT");
+  x.setAttribute('id', "city"+num);
+  x.setAttribute('name', "city"+num);
+  document.body.appendChild(x);
+  var y = document.createElement("INPUT");
+  y.setAttribute('id', "dist"+num);
+  y.setAttribute('name', "dist"+num);
+  document.body.appendChild(y);
+  var z = document.createElement("INPUT");
+  z.setAttribute('id', "time"+num);
+  z.setAttribute('name', "time"+num);
+  document.body.appendChild(z);
+  document.body.appendChild(br);
+  num++;
+}
+</script>
+
+  </body>
+</html>

@@ -20,7 +20,12 @@ exports.login=function(req,res){
                 req.session.user = {name: results[0].fullname, email: u_email, role: u_role};
                 req.session.login_error = {email: email_err, password: password_err};
                 req.session.save();
-                return res.redirect('/homepage');
+                if(u_role=="Customer"){
+                  return res.redirect('/homepage');
+                }
+                else{
+                  return res.redirect('/admin-homepage');
+                }
             }
             else{
                 password_err = "Email - Password combination invalid";
